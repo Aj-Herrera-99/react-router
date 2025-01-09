@@ -11,7 +11,7 @@ function PokemonDetail() {
     return (
         <div className="flex flex-col items-center h-full">
             <h1 className="mt-4 mb-8 text-4xl uppercase">Pokemon #{id}</h1>
-            <Card pokemon={pokemon} src={imgPath.slice(1)} />
+            <Card pokemon={pokemon} src={imgPath} />
         </div>
     );
 }

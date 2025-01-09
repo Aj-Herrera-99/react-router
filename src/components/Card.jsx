@@ -4,14 +4,14 @@ import { NavLink } from "react-router-dom";
 function Card({ pokemon, src }) {
     let imgPath;
     if (isNaN(pokemon.id)) {
-        imgPath = `./pokedex/images/placeholder.png`;
+        imgPath = `/pokedex/images/placeholder.png`;
     } else {
         imgPath =
             pokemon.id < 10
-                ? `./pokedex/images/00${pokemon.id}.png`
+                ? `/pokedex/images/00${pokemon.id}.png`
                 : pokemon.id < 100
-                ? `./pokedex/images/0${pokemon.id}.png`
-                : `./pokedex/images/${pokemon.id}.png`;
+                ? `/pokedex/images/0${pokemon.id}.png`
+                : `/pokedex/images/${pokemon.id}.png`;
     }
 
     return (
