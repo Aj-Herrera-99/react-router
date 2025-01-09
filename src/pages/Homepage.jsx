@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function Homepage() {
-  return (
-    <section>Homepage</section>
-  )
+    return (
+        <section>
+            <h1 className="mt-4 mb-8 text-4xl uppercase">Homepage</h1>
+        </section>
+    );
 }
 
-export default Homepage
+export default Homepage;
