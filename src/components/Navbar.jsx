@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function Navbar() {
     return (
-        <nav className="border-r-2 bg-slate-950 border-r-white">
+        <nav className="border-r-2 bg-slate-950 border-r-white sm:w-[200px]">
             <div className="flex flex-col gap-6 [&>a]:p-2 [&>a]:pr-8 [&>a]:border-b-2 [&>a]:text-white [&>a]:text-xl [&>a]:font-light [&>a]:tracking-widest [&>a]:uppercase hover:[&>a]:pb-4 [&>a]:transition-all [&>a]:rounded-md hover:[&>a]:bg-slate-700">
                 <NavLink
                     to="/"

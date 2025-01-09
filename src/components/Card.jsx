@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Card({ pokemon }) {
     let imgPath;
@@ -13,19 +14,31 @@ function Card({ pokemon }) {
                 : `./pokedex/images/${pokemon.id}.png`;
     }
 
-    return ( 
-        <div className="relative flex flex-col items-center p-3 text-black bg-blue-100 rounded-lg select-none aspect-square hover:bg-blue-200">
-            <div className="h-full p-4">
+    return (
+        <CardWrapper pokemon={pokemon}>
+            <div className="w-full p-4 h-5/6">
                 <img
                     src={imgPath}
                     alt={pokemon.name.english}
-                    className="object-contain w-full h-full"
+                    className="relative object-contain w-full h-full transition-all"
                 />
             </div>
             <span className="text-xl font-light tracking-wider uppercase select-text">
                 {pokemon.name.english}
             </span>
-        </div>
+        </CardWrapper>
+    );
+}
+
+function CardWrapper({ pokemon, children }) {
+    return (
+        <NavLink
+            to={`/pokedex/${pokemon.id}`}
+            className="relative flex flex-col items-center text-black bg-blue-100 rounded-lg cursor-pointer select-none aspect-square hover:bg-blue-200 [&_img]:hover:scale-[1.3] [&_img]:hover:z-10 transition-all"
+        >
+            {children}
+            {/* <div className="absolute inset-0 bg-black opacity-0 hover:opacity-15"></div> */}
+        </NavLink>
     );
 }
 
