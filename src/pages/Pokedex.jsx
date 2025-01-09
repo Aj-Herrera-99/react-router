@@ -1,7 +1,7 @@
 import React from "react";
 
 function Pokedex() {
-    return <div>Pokedex</div>;
+    return <section>Pokedex</section>;
 }
 
 export default Pokedex;

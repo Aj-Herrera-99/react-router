@@ -6,7 +6,9 @@ function DefaultLayout() {
     return (
         <>
             <Navbar />
-            <Outlet />
+            <main className="overflow-y-auto bg-blue-500 grow">
+                <Outlet />
+            </main>
         </>
     );
 }
