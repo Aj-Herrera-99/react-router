@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PokedexContext } from "./DefaultLayout";
+import { PokedexContext } from "./Pokedex";
 
 const pokemonData = {
     name: "",
@@ -37,7 +37,7 @@ const type = [
 
 const base = ["HP", "Attack", "Defense", "Speed"];
 
-function PokemonCreate() {
+function PokemonStore() {
     const { pokedex, setPokedex } = useContext(PokedexContext);
     const navigate = useNavigate();
     const [newPokemon, setNewPokemon] = useState(pokemonData);
@@ -199,4 +199,4 @@ function capitalizeStr(str) {
     return str[0].toUpperCase() + str.slice(1).toLowerCase();
 }
 
-export default PokemonCreate;
+export default PokemonStore;

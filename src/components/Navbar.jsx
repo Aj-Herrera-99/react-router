@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const appLinks = [
     { to: "/", label: "Home" },
     { to: "/pokedex", label: "List" },
-    { to: "/pokedex/create", label: "Create" },
+    { to: "/pokedex/store", label: "Create" },
     { to: "/about", label: "Chi Siamo" },
 ];
 

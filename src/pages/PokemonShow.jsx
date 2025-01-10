@@ -5,7 +5,7 @@ import Card from "../components/Card";
 function PokemonShow() {
     const { id } = useParams();
     const navigate = useNavigate();
-    // * pokemon mandato dal server
+    // * simulazione pokemon store
     // const [pokemon, setPokemon] = useState({});
     // useEffect(() => {
     //     axios
@@ -13,7 +13,6 @@ function PokemonShow() {
     //         .then((res) => setPokemon(res.data))
     //         .catch((err) => console.error(err));
     // }, []);
-    // * location per "simulazione" fetch del pokemon
     const location = useLocation();
     const pokemon = location.state?.pokemon;
     useEffect(() => {

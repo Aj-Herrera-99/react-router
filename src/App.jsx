@@ -6,7 +6,8 @@ import Pokedex from "./pages/Pokedex";
 import About from "./pages/About";
 import PokemonShow from "./pages/PokemonShow";
 import NotFound from "./pages/NotFound";
-import PokemonCreate from "./pages/PokemonStore";
+import PokemonStore from "./pages/PokemonStore";
+import PokedexIndex from "./pages/PokedexIndex";
 
 function App() {
     return (
@@ -14,9 +15,11 @@ function App() {
             <Routes>
                 <Route Component={DefaultLayout}>
                     <Route index Component={Homepage} />
-                    <Route path="/pokedex" Component={Pokedex} />
-                    <Route path="/pokedex/:id" Component={PokemonShow} />
-                    <Route path="/pokedex/create" Component={PokemonCreate} />
+                    <Route path="/pokedex" Component={Pokedex}>
+                        <Route index Component={PokedexIndex} />
+                        <Route path=":id" Component={PokemonShow} />
+                        <Route path="store" Component={PokemonStore} />
+                    </Route>
                     <Route path="/about" Component={About} />
                     <Route path="*" Component={NotFound} />
                 </Route>
