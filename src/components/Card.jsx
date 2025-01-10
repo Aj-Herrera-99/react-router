@@ -35,7 +35,7 @@ function CardWrapper({ pokemon, children }) {
         <Link
             to={`/pokedex/${pokemon.id}`}
             state={{ pokemon }}
-            className="flex flex-col items-center text-black bg-blue-100 rounded-lg cursor-pointer select-none aspect-square hover:bg-blue-200 [&_img]:hover:scale-[1.3] [&_img]:hover:z-10 transition-all"
+            className="flex flex-col items-center text-black bg-blue-100 rounded-lg cursor-pointer select-none aspect-square hover:bg-blue-200 [&_img]:hover:scale-[1.3] [&_img]:hover:z-10 transition-all max-w-[450px]"
         >
             {children}
         </Link>

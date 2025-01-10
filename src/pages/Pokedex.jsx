@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PokedexContext } from "./DefaultLayout";
 import Card from "../components/Card";
-// * importazione pokedex "simulazione" fetch pokedex
-import pokedex from "../data/pokedex.json"
 
 function Pokedex() {
-    // * pokedex mandato dal server
+    // * simulazione pokedex index
+    const { pokedex } = useContext(PokedexContext);
     // const [pokedex, setPokedex] = useState([]);
     // useEffect(() => {
     //     axios

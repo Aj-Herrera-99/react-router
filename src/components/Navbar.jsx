@@ -49,6 +49,7 @@ function Navbar() {
                                 .filter((link) => link.to.includes("pokedex"))
                                 .map((link, index) => (
                                     <NavLink
+                                        end={true}
                                         key={index}
                                         to={link.to}
                                         className={({ isActive }) =>
@@ -57,9 +58,6 @@ function Navbar() {
                                         }
                                     >
                                         <span>{link.label}</span>
-                                        <span>
-                                            {link.label === "pokedex" && "ciao"}
-                                        </span>
                                     </NavLink>
                                 ))}
                         </div>
