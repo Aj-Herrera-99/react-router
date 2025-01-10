@@ -1,13 +1,22 @@
 import React from "react";
 import Card from "../components/Card";
-import pokedex from "../data/pokedex.json";
+// * importazione pokedex "simulazione" fetch pokedex
+import pokedex from "../data/pokedex.json"
 
 function Pokedex() {
+    // * pokedex mandato dal server
+    // const [pokedex, setPokedex] = useState([]);
+    // useEffect(() => {
+    //     axios
+    //         .get("URL_POKEDEX")
+    //         .then((res) => setPokedex(res.data))
+    //         .catch((err) => console.error(err));
+    // }, []);
     return (
         <section>
             <h1 className="mt-4 mb-8 text-4xl uppercase">pokedex</h1>
             <CardsContainer>
-                {pokedex.map((pokemon) => (
+                {pokedex?.map((pokemon) => (
                     <Card key={pokemon.id} pokemon={pokemon} />
                 ))}
             </CardsContainer>
