@@ -141,7 +141,7 @@ function Form({ children, onSubmit }) {
     return (
         <form
             onSubmit={onSubmit}
-            className="absolute top-14 z-10 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 flex flex-col gap-3 p-4 text-white rounded-md bg-blue-900 [&_input]:text-black max-w-[90vw]"
+            className="absolute top-14 z-10 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 flex flex-col gap-3 p-4 text-white rounded-md bg-slate-700 [&_input]:text-black max-w-[90vw]"
         >
             {children}
         </form>

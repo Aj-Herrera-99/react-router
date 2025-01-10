@@ -16,10 +16,11 @@ function Card({ pokemon, setPokedex }) {
     }
 
     const removeCard = (e) => {
-        setPokedex((curr) => {
-            const newPokedex = curr.filter((pkmn) => pkmn.id != pokemon.id);
-            return newPokedex;
-        });
+        setPokedex &&
+            setPokedex((curr) => {
+                const newPokedex = curr.filter((pkmn) => pkmn.id != pokemon.id);
+                return newPokedex;
+            });
         // axios
         //     .delete(`${apiURL}/${pokemon.id}`)
         //     .then((res) => {

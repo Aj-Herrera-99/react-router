@@ -11,7 +11,7 @@ const appLinks = [
 function Navbar() {
     const [isPokedexOpen, setIsPokedexOpen] = useState(false);
     const navElClass =
-        "p-2 border-b-2 text-white text-xl font-light tracking-widest uppercase hover:pb-4 transition-all rounded-md hover:bg-slate-700 cursor-pointer";
+        "p-2 border-b-2 text-white text-xl font-light tracking-widest uppercase hover:pb-4 transition-all rounded-md hover:bg-slate-800 cursor-pointer";
     return (
         <nav className="border-r-2 bg-slate-950 border-r-white sm:min-w-[200px]">
             <div className="flex flex-col gap-6">
