@@ -4,9 +4,7 @@ import Card from "../components/Card";
 
 function PokedexIndex() {
     // * simulazione pokedex index
-    const { pokedex } = useContext(PokedexContext);
-    // const { pokedex } = useContext(PokedexContext);
-    // const [pokedex, setPokedex] = useState([]);
+    const { pokedex, setPokedex } = useContext(PokedexContext);
     // useEffect(() => {
     //     axios
     //         .get("URL_POKEDEX")
@@ -18,7 +16,11 @@ function PokedexIndex() {
             <h1 className="mt-4 mb-8 text-4xl uppercase">pokedex</h1>
             <CardsContainer>
                 {pokedex?.map((pokemon) => (
-                    <Card key={pokemon.id} pokemon={pokemon} />
+                    <Card
+                        key={pokemon.id}
+                        pokemon={pokemon}
+                        setPokedex={setPokedex}
+                    />
                 ))}
             </CardsContainer>
         </>

@@ -6,11 +6,10 @@ function PokemonShow() {
     const { id } = useParams();
     const navigate = useNavigate();
     // * simulazione pokemon store
-    // const [pokemon, setPokemon] = useState({});
     // useEffect(() => {
     //     axios
     //         .get("URL_POKEDEX/id")
-    //         .then((res) => setPokemon(res.data))
+    //         .then((res) => setPokedex(res.data))
     //         .catch((err) => console.error(err));
     // }, []);
     const location = useLocation();
