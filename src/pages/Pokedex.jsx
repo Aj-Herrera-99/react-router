@@ -1,6 +1,5 @@
-import React, { createContext, useEffect, useState } from "react";
-import Card from "../components/Card";
-import { Outlet, useOutlet } from "react-router-dom";
+import React, { createContext, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 import pokedexData from "../data/pokedex.json";
 

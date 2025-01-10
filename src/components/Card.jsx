@@ -42,7 +42,7 @@ function Card({ pokemon, setPokedex }) {
                     {pokemon.name.english}
                 </span>
             </CardLink>
-            <RemoveBtn onClick={removeCard} />
+            {setPokedex && <RemoveBtn onClick={removeCard} />}
         </div>
     );
 }
