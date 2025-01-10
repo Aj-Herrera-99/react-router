@@ -6,12 +6,11 @@ function PokemonDetail() {
     const { id } = useParams();
     const location = useLocation();
     const pokemon = location.state.pokemon;
-    const imgPath = location.state.imgPath;
-    console.log(location.state);
+    console.log(location);
     return (
         <div className="flex flex-col items-center h-full">
             <h1 className="mt-4 mb-8 text-4xl uppercase">Pokemon #{id}</h1>
-            <Card pokemon={pokemon} src={imgPath} />
+            <Card pokemon={pokemon} />
         </div>
     );
 }
