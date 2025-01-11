@@ -10,16 +10,16 @@ function Pokedex() {
     const [pokedex, setPokedex] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    sessionStorage.setItem("limit", "161");
-    sessionStorage.setItem("start", "151");
-
     useEffect(() => {
+        console.log("effect");
         (async () => {
-            let limit = parseInt(sessionStorage.getItem("limit"));
-            let start = parseInt(sessionStorage.getItem("start"));
             let params;
             if (!parseInt(sessionStorage.getItem("firstRender"))) {
                 sessionStorage.setItem("firstRender", "1");
+                sessionStorage.setItem("start", "251");
+                sessionStorage.setItem("limit", "261");
+                let start = parseInt(sessionStorage.getItem("start"));
+                let limit = parseInt(sessionStorage.getItem("limit"));
                 params = {
                     limit: limit,
                     start: start,
