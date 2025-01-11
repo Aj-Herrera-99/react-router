@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
-import { getIndex } from "../api/api";
+import { indexApi } from "../api/api";
 import Spinner from "../components/Spinner";
 
 export const PokedexContext = createContext();
@@ -12,7 +12,7 @@ function Pokedex() {
 
     useEffect(() => {
         return async () => {
-            const pokedexData = await getIndex(
+            const pokedexData = await indexApi(
                 import.meta.env.VITE_POKEDEX_URL,
                 {
                     params: {

@@ -4,6 +4,7 @@ import RemoveBtn from "./RemoveBtn";
 import Spinner from "./Spinner";
 import { use } from "react";
 import axios from "axios";
+import { destroyApi } from "../api/api";
 
 function Card({ pokemon, setPokedex }) {
     const [isLoading, setIsLoading] = useState(true);
@@ -29,21 +30,19 @@ function Card({ pokemon, setPokedex }) {
                 const src = URL.createObjectURL(res.data);
                 setImgPath(src);
                 setIsLoading(false);
-            }).catch(err => console.error(err.response.data));
+            })
+            .catch((err) => console.error(err.response.data));
     }, []);
 
     const removeCard = (e) => {
-        setPokedex &&
-            setPokedex((curr) => {
-                const newPokedex = curr.filter((pkmn) => pkmn.id != pokemon.id);
-                return newPokedex;
-            });
-        // axios
-        //     .delete(`${apiURL}/${pokemon.id}`)
-        //     .then((res) => {
-        //         setPokedex(res.data);
-        //     })
-        //     .catch((err) => console.error(err.response.data));
+        if (setPokedex) {
+            (async () => {
+                const pokedexFiltered = await destroyApi(
+                    `${import.meta.env.VITE_POKEDEX_URL}/${pokemon.id}`
+                );
+                setPokedex(pokedexFiltered);
+            })();
+        }
     };
 
     return (

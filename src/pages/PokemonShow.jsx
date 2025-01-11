@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Card from "../components/Card";
-import { getShow } from "../api/api";
+import { showApi } from "../api/api";
 
 function PokemonShow() {
     const [pokemon, setPokemon] = useState(null);
@@ -10,14 +10,13 @@ function PokemonShow() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        return async () => {
-            const pokemon = await getShow(
+        (async () => {
+            const pokemon = await showApi(
                 `${import.meta.env.VITE_POKEDEX_URL}/${id}`,
                 null
             );
-            console.log(pokemon);
             pokemon ? setPokemon(pokemon) : navigate("*");
-        };
+        })();
     }, []);
 
     return (

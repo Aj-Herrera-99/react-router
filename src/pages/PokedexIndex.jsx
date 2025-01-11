@@ -3,7 +3,6 @@ import { PokedexContext } from "./Pokedex";
 import Card from "../components/Card";
 
 function PokedexIndex() {
-    // * simulazione pokedex index
     const { pokedex, setPokedex } = useContext(PokedexContext);
 
     return (
