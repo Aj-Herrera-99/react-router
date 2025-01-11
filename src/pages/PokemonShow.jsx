@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../components/Card";
 import { showApi } from "../api/api";
+import { PokedexContext } from "./Pokedex";
 
 function PokemonShow() {
+    const { pokedex } = useContext(PokedexContext); //* solo per fallback
     const [pokemon, setPokemon] = useState(null);
 
     const { id } = useParams();
@@ -15,7 +17,12 @@ function PokemonShow() {
                 `${import.meta.env.VITE_POKEDEX_URL}/${id}`,
                 null
             );
-            pokemon ? setPokemon(pokemon) : navigate("*");
+            if (pokemon) {
+                setPokemon(pokemon);
+            } else {
+                const pkmnFb = pokedex.find((pkmn) => pkmn.id == id);
+                pkmnFb ? setPokemon(pkmnFb) : navigate("*");
+            }
         })();
     }, []);
 

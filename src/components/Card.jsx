@@ -28,9 +28,16 @@ function Card({ pokemon, setPokedex }) {
             .then((res) => {
                 const src = URL.createObjectURL(res.data);
                 setImgPath(src);
-                setIsLoading(false);
             })
-            .catch((err) => console.error(err.response.data));
+            .catch((err) => {
+                setImgPath(`/pokedex/${resource}`);
+                err.response
+                    ? console.error(err.response.data)
+                    : console.error("Errore connessione");
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
     }, []);
 
     const removeCard = (e) => {
@@ -39,7 +46,7 @@ function Card({ pokemon, setPokedex }) {
                 const pokedexFiltered = await destroyApi(
                     `${import.meta.env.VITE_POKEDEX_URL}/${pokemon.id}`
                 );
-                setPokedex(pokedexFiltered);
+                pokedexFiltered ? setPokedex(pokedexFiltered) : setPokedex(curr => curr.filter(pkmn => pkmn.id != pokemon.id));
             })();
         }
     };
