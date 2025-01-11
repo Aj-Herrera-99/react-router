@@ -75,7 +75,7 @@ function PokemonStore() {
                 import.meta.env.VITE_POKEDEX_URL,
                 newPokemon
             );
-            setPokedex(pokedexUpdated);
+            pokedexUpdated && setPokedex(pokedexUpdated);
             navigate("/pokedex");
         })();
     };
