@@ -53,7 +53,7 @@ function Navbar() {
                                         key={index}
                                         to={link.to}
                                         className={({ isActive }) =>
-                                            `${navElClass} self-end w-11/12` +
+                                            `${navElClass} self-end w-11/12 capitalize` +
                                             (isActive ? " bg-slate-600" : "")
                                         }
                                     >
