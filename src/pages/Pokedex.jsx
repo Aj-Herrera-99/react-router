@@ -1,12 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-
 import { indexApi } from "../api/api";
 import Spinner from "../components/Spinner";
-
 import pokedexFallback from "../data/pokedex.json"; //* solo per fallback
 
 export const PokedexContext = createContext();
+
+const START = NaN;
+const LIMIT = NaN;
 
 function Pokedex() {
     const [pokedex, setPokedex] = useState([]);
@@ -17,10 +18,8 @@ function Pokedex() {
             let params;
             if (!parseInt(sessionStorage.getItem("firstRender"))) {
                 sessionStorage.setItem("firstRender", "1");
-                sessionStorage.setItem("start", "");
-                sessionStorage.setItem("limit", "");
-                let start = parseInt(sessionStorage.getItem("start"));
-                let limit = parseInt(sessionStorage.getItem("limit"));
+                let start = START;
+                let limit = LIMIT;
                 params = {
                     limit: limit,
                     start: start,
