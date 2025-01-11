@@ -30,7 +30,7 @@ function Card({ pokemon, setPokedex }) {
                 setImgPath(src);
             })
             .catch((err) => {
-                setImgPath(`/pokedex/${resource}`);
+                setImgPath(`/pokedex/${resource}`); //* pokedexFallback
                 err.response
                     ? console.error(err.response.data)
                     : console.error("Errore connessione");
@@ -46,7 +46,11 @@ function Card({ pokemon, setPokedex }) {
                 const pokedexFiltered = await destroyApi(
                     `${import.meta.env.VITE_POKEDEX_URL}/${pokemon.id}`
                 );
-                pokedexFiltered ? setPokedex(pokedexFiltered) : setPokedex(curr => curr.filter(pkmn => pkmn.id != pokemon.id));
+                pokedexFiltered
+                    ? setPokedex(pokedexFiltered)
+                    : setPokedex(
+                          (curr) => curr.filter((pkmn) => pkmn.id != pokemon.id) //* pokedexFallback
+                      );
             })();
         }
     };

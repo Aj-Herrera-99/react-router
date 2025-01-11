@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import { indexApi } from "../api/api";
 import Spinner from "../components/Spinner";
 
-import pokedexFallback from "../data/pokedex.json";
+import pokedexFallback from "../data/pokedex.json"; //* solo per fallback
 
 export const PokedexContext = createContext();
 
@@ -34,7 +34,7 @@ function Pokedex() {
                     params,
                 }
             );
-            pokedexData ? setPokedex(pokedexData) : setPokedex(pokedexFallback);
+            pokedexData ? setPokedex(pokedexData) : setPokedex(pokedexFallback); //* pokedexFallback
             setIsLoading(false);
         })();
     }, []);

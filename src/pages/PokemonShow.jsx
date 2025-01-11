@@ -20,7 +20,7 @@ function PokemonShow() {
             if (pokemon) {
                 setPokemon(pokemon);
             } else {
-                const pkmnFb = pokedex.find((pkmn) => pkmn.id == id);
+                const pkmnFb = pokedex.find((pkmn) => pkmn.id == id); //* pokedexFallback
                 pkmnFb ? setPokemon(pkmnFb) : navigate("*");
             }
         })();
