@@ -10,14 +10,27 @@ function Pokedex() {
     const [pokedex, setPokedex] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    sessionStorage.setItem("limit", "161");
+    sessionStorage.setItem("start", "151");
+
     useEffect(() => {
         (async () => {
+            let limit = parseInt(sessionStorage.getItem("limit"));
+            let start = parseInt(sessionStorage.getItem("start"));
+            let params;
+            if (!parseInt(sessionStorage.getItem("firstRender"))) {
+                sessionStorage.setItem("firstRender", "1");
+                params = {
+                    limit: limit,
+                    start: start,
+                };
+            } else {
+                params = null;
+            }
             const pokedexData = await indexApi(
                 import.meta.env.VITE_POKEDEX_URL,
                 {
-                    params: {
-                        limit: 12,
-                    },
+                    params,
                 }
             );
             setPokedex(pokedexData);

@@ -49,18 +49,19 @@ function PokemonStore() {
         const VAL = value;
         switch (type) {
             case "text":
-                setNewPokemon({
+                return setNewPokemon({
                     ...newPokemon,
                     [KEY]: VAL,
                 });
-                break;
             case "checkbox":
                 const setTypes = new Set([...newPokemon.type]);
                 checked ? setTypes.add(VAL) : setTypes.delete(VAL);
-                setNewPokemon({ ...newPokemon, [KEY]: Array.from(setTypes) });
-                break;
+                return setNewPokemon({
+                    ...newPokemon,
+                    [KEY]: Array.from(setTypes),
+                });
             case "number":
-                setNewPokemon({
+                return setNewPokemon({
                     ...newPokemon,
                     base: { ...newPokemon.base, [KEY]: VAL },
                 });
@@ -177,10 +178,6 @@ function SubmitBtn({ children }) {
             {children}
         </button>
     );
-}
-
-function capitalizeStr(str) {
-    return str[0].toUpperCase() + str.slice(1).toLowerCase();
 }
 
 export default PokemonStore;
