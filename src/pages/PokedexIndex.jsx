@@ -19,7 +19,7 @@ function PokedexIndex() {
     return (
         <>
             <h1 className="mt-4 mb-8 text-4xl uppercase">pokedex</h1>
-            <section className="flex items-center gap-6">
+            <section className="flex items-center justify-center gap-6 sm:justify-start">
                 <SearchBar onChange={handleFilterChange} filter={filter} />
                 <OrderPokemons setPokedex={setPokedex} />
             </section>
@@ -38,7 +38,7 @@ function PokedexIndex() {
 
 function CardsContainer({ children }) {
     return (
-        <div className="grid grid-cols-1 gap-6 my-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 my-4 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {children}
         </div>
     );

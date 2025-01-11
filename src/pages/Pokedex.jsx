@@ -44,11 +44,9 @@ function Pokedex() {
                     <Spinner />
                 </div>
             ) : (
-                <section>
-                    <PokedexContext.Provider value={{ pokedex, setPokedex }}>
-                        <Outlet />
-                    </PokedexContext.Provider>
-                </section>
+                <PokedexContext.Provider value={{ pokedex, setPokedex }}>
+                    <Outlet />
+                </PokedexContext.Provider>
             )}
         </>
     );
