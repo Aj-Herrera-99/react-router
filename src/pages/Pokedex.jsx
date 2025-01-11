@@ -16,7 +16,7 @@ function Pokedex() {
             if (!parseInt(sessionStorage.getItem("firstRender"))) {
                 sessionStorage.setItem("firstRender", "1");
                 sessionStorage.setItem("start", "");
-                sessionStorage.setItem("limit", "vbosbva");
+                sessionStorage.setItem("limit", "");
                 let start = parseInt(sessionStorage.getItem("start"));
                 let limit = parseInt(sessionStorage.getItem("limit"));
                 params = {
