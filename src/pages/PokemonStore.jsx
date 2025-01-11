@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PokedexContext } from "./Pokedex";
+import { storeApi } from "../api/api";
 
 const pokemonData = {
     name: "",
@@ -38,7 +39,7 @@ const type = [
 const base = ["HP", "Attack", "Defense", "Speed"];
 
 function PokemonStore() {
-    const { pokedex, setPokedex } = useContext(PokedexContext);
+    const { setPokedex } = useContext(PokedexContext);
     const navigate = useNavigate();
     const [newPokemon, setNewPokemon] = useState(pokemonData);
 
@@ -68,31 +69,14 @@ function PokemonStore() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // * simulazione pokemon store
-        let { name, type, base } = newPokemon;
-        if (name && type && base) {
-            name = capitalizeStr(name);
-            type = type.map((el) => capitalizeStr(el));
-            Object.keys(base).forEach(
-                (key) => (base[key] = parseInt(base[key]))
+        (async () => {
+            const pokedexUpdated = await storeApi(
+                import.meta.env.VITE_POKEDEX_URL,
+                newPokemon
             );
-            const newPokemon = {
-                id: crypto.randomUUID(),
-                name: { english: name },
-                type: type.length ? type : ["Normal"],
-                base,
-            };
-            setPokedex([newPokemon, ...pokedex]);
+            setPokedex(pokedexUpdated);
             navigate("/pokedex");
-        }
-        // axios
-        //     .post(apiURL, newPokemon)
-        //     .then((res) => {
-        //         console.log("Nuovo pokemon aggiunto");
-        //         setPokedex(res.data);
-        //         navigate("/pokedex")
-        //     })
-        //     .catch((err) => console.error(err.response.data));
+        })();
     };
 
     return (

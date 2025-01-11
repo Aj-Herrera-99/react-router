@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import RemoveBtn from "./RemoveBtn";
 import Spinner from "./Spinner";
-import { use } from "react";
 import axios from "axios";
 import { destroyApi } from "../api/api";
 

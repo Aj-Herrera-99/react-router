@@ -11,7 +11,7 @@ function Pokedex() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        return async () => {
+        (async () => {
             const pokedexData = await indexApi(
                 import.meta.env.VITE_POKEDEX_URL,
                 {
@@ -22,7 +22,7 @@ function Pokedex() {
             );
             setPokedex(pokedexData);
             setIsLoading(false);
-        };
+        })();
     }, []);
 
     return (
