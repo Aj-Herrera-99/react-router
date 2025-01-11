@@ -1,19 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import RemoveBtn from "./RemoveBtn";
+import Spinner from "./Spinner";
+import { use } from "react";
+import axios from "axios";
 
 function Card({ pokemon, setPokedex }) {
-    let imgPath;
-    if (isNaN(pokemon.id)) {
-        imgPath = `/pokedex/images/placeholder.png`;
-    } else {
-        imgPath =
-            pokemon.id < 10
-                ? `/pokedex/images/00${pokemon.id}.png`
-                : pokemon.id < 100
-                ? `/pokedex/images/0${pokemon.id}.png`
-                : `/pokedex/images/${pokemon.id}.png`;
-    }
+    const [isLoading, setIsLoading] = useState(true);
+    const [imgPath, setImgPath] = useState(null);
+
+    useEffect(() => {
+        let resource;
+        if (isNaN(pokemon.id)) {
+            resource = `/images/placeholder.png`;
+        } else {
+            resource =
+                pokemon.id < 10
+                    ? `/images/00${pokemon.id}.png`
+                    : pokemon.id < 100
+                    ? `/images/0${pokemon.id}.png`
+                    : `/images/${pokemon.id}.png`;
+        }
+        axios
+            .get(`${import.meta.env.VITE_POKEDEX_URL}/${resource}`, {
+                responseType: "blob",
+            })
+            .then((res) => {
+                const src = URL.createObjectURL(res.data);
+                setImgPath(src);
+                setIsLoading(false);
+            }).catch(err => console.error(err.response.data));
+    }, []);
 
     const removeCard = (e) => {
         setPokedex &&
@@ -33,11 +50,15 @@ function Card({ pokemon, setPokedex }) {
         <div className="relative transition-all max-w-[450px]">
             <CardLink pokemon={pokemon}>
                 <div className="w-full p-4 h-5/6">
-                    <img
-                        src={imgPath}
-                        alt={pokemon.name.english}
-                        className="object-contain w-full h-full transition-all"
-                    />
+                    {isLoading ? (
+                        <Spinner />
+                    ) : (
+                        <img
+                            src={imgPath}
+                            alt={pokemon.name.english}
+                            className="object-contain w-full h-full transition-all"
+                        />
+                    )}
                 </div>
                 <span className="text-xl font-light tracking-wider uppercase select-text">
                     {pokemon.name.english}

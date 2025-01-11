@@ -6,7 +6,7 @@ function DefaultLayout() {
     return (
         <>
             <Navbar />
-            <main className="relative overflow-y-scroll text-white bg-slate-800 grow">
+            <main className="relative overflow-y-scroll text-white bg-slate-800 grow min-h-[100vh]">
                 <Outlet />
             </main>
         </>

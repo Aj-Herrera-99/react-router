@@ -26,11 +26,19 @@ function Pokedex() {
     }, []);
 
     return (
-        <section>
-            <PokedexContext.Provider value={{ pokedex, setPokedex }}>
-                {isLoading ? <Spinner /> : <Outlet />}
-            </PokedexContext.Provider>
-        </section>
+        <>
+            {isLoading ? (
+                <div className="h-full">
+                    <Spinner />
+                </div>
+            ) : (
+                <section>
+                    <PokedexContext.Provider value={{ pokedex, setPokedex }}>
+                        <Outlet />
+                    </PokedexContext.Provider>
+                </section>
+            )}
+        </>
     );
 }
 
