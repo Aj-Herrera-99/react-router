@@ -6,8 +6,8 @@ import pokedexFallback from "../data/pokedex.json"; //* solo per fallback
 
 export const PokedexContext = createContext();
 
-const START = NaN;
-const LIMIT = NaN;
+const START = 0;
+const LIMIT = 30;
 
 function Pokedex() {
     const [pokedex, setPokedex] = useState([]);

@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { PokedexContext } from "./Pokedex";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";
 import OrderPokemons from "../components/OrderPokemons";
 import GenSelector from "../components/GenSelector";
+import { indexApi } from "../api/api";
 
 const chooseGenByFirstId = (firstId) => {
     switch (firstId) {
@@ -29,11 +31,36 @@ const chooseGenByFirstId = (firstId) => {
 function PokedexIndex() {
     const { pokedex, setPokedex } = useContext(PokedexContext);
     const [filter, setFilter] = useState("");
+    const [hasMore, setHasMore] = useState(true);
     const genSelected = chooseGenByFirstId(parseInt(pokedex[0].id));
 
-    const filteredPokedex = pokedex.filter((pokemon) =>
+    let filteredPokedex = pokedex.filter((pokemon) =>
         pokemon.name.english.toLowerCase().startsWith(filter.toLowerCase())
     );
+
+    const fetchMorePokemon = async () => {
+        if (filteredPokedex.length >= 151) {
+            setHasMore(false);
+        } else {
+            let params = {
+                start: filteredPokedex.length,
+                limit: filteredPokedex.length + 30,
+            };
+            const morePokemons = await indexApi(
+                import.meta.env.VITE_POKEDEX_URL,
+                {
+                    params,
+                }
+            );
+            if (morePokemons) {
+                filteredPokedex = filteredPokedex.concat(morePokemons);
+                if (filteredPokedex.length > 151) {
+                    filteredPokedex = filteredPokedex.slice(0, 151);
+                }
+                setPokedex(filteredPokedex);
+            }
+        }
+    };
 
     const handleFilterChange = (e) => {
         setFilter(e.target.value);
@@ -49,7 +76,15 @@ function PokedexIndex() {
                     <OrderPokemons setPokedex={setPokedex} />
                 </div>
             </section>
-            <CardsContainer>
+            <InfiniteScroll
+                dataLength={filteredPokedex.length}
+                hasMore={hasMore}
+                next={fetchMorePokemon}
+                loader={<p className="w-full">Loading...</p>}
+                endMessage={<p className="w-full grid-">You are all set!</p>}
+                scrollableTarget="parentScrollDiv"
+                className="grid h-full grid-cols-1 gap-10 my-4 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+            >
                 {filteredPokedex?.map((pokemon) => (
                     <Card
                         key={pokemon.id}
@@ -57,7 +92,7 @@ function PokedexIndex() {
                         setPokedex={setPokedex}
                     />
                 ))}
-            </CardsContainer>
+            </InfiniteScroll>
         </>
     );
 }

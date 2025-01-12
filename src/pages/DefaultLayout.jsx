@@ -6,7 +6,7 @@ function DefaultLayout() {
     return (
         <>
             <Navbar />
-            <main className="relative !px-8 overflow-y-scroll text-white bg-slate-800 grow min-h-[100vh] [&_h1]:text-center sm:[&_h1]:text-start">
+            <main id="parentScrollDiv" className="relative !px-8 overflow-y-scroll text-white bg-slate-800 grow h-[100vh] [&_h1]:text-center sm:[&_h1]:text-start">
                 <Outlet />
             </main>
         </>
