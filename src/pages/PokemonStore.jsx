@@ -68,16 +68,14 @@ function PokemonStore() {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        (async () => {
-            const pokedexUpdated = await storeApi(
-                import.meta.env.VITE_POKEDEX_URL,
-                newPokemon
-            );
-            pokedexUpdated && setPokedex(pokedexUpdated);
-            navigate("/pokedex");
-        })();
+        const { pokedex: pokedexUpdated, id } = await storeApi(
+            import.meta.env.VITE_POKEDEX_URL,
+            newPokemon
+        );
+        pokedexUpdated && setPokedex(pokedexUpdated);
+        navigate(`/pokedex/${id}`);
     };
 
     return (

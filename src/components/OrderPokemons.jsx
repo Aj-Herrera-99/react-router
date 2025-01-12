@@ -9,21 +9,19 @@ function OrderPokemons({ setPokedex }) {
     const handleDropDown = () => {
         setIsClicked((curr) => !curr);
     };
-    const handleOrder = (e) => {
+    const handleOrder = async (e) => {
         if (e.target.tagName === "LI") {
-            (async () => {
-                setIsClicked(false);
-                const type = e.target.innerHTML;
-                const params = {
-                    order: selectRef.current.value,
-                    type: type.toLowerCase(),
-                };
-                const orderedPokedex = await indexApi(
-                    import.meta.env.VITE_POKEDEX_URL,
-                    { params }
-                );
-                orderedPokedex && setPokedex(orderedPokedex);
-            })();
+            setIsClicked(false);
+            const type = e.target.innerHTML;
+            const params = {
+                order: selectRef.current.value,
+                type: type.toLowerCase(),
+            };
+            const orderedPokedex = await indexApi(
+                import.meta.env.VITE_POKEDEX_URL,
+                { params }
+            );
+            orderedPokedex && setPokedex(orderedPokedex);
         }
     };
     return (

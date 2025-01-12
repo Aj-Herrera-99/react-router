@@ -6,14 +6,12 @@ const genOption = [1, 2, 3, 4, 5, 6, 7];
 
 function GenSelector({ genSelected }) {
     const { setPokedex } = useContext(PokedexContext);
-    const handleGenChange = (e) => {
-        (async () => {
-            const filteredPokedex = await indexApi(
-                import.meta.env.VITE_POKEDEX_URL,
-                { params: { gen: e.target.value } }
-            );
-            filteredPokedex && setPokedex(filteredPokedex);
-        })();
+    const handleGenChange = async (e) => {
+        const filteredPokedex = await indexApi(
+            import.meta.env.VITE_POKEDEX_URL,
+            { params: { gen: e.target.value } }
+        );
+        filteredPokedex && setPokedex(filteredPokedex);
     };
     return (
         <div className="flex items-center gap-2 p-1 text-lg capitalize bg-blue-600 rounded-md ">

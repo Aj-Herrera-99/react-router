@@ -40,18 +40,16 @@ function Card({ pokemon, setPokedex }) {
             });
     }, []);
 
-    const removeCard = (e) => {
+    const removeCard = async (e) => {
         if (setPokedex) {
-            (async () => {
-                const pokedexFiltered = await destroyApi(
-                    `${import.meta.env.VITE_POKEDEX_URL}/${pokemon.id}`
-                );
-                pokedexFiltered
-                    ? setPokedex(pokedexFiltered)
-                    : setPokedex(
-                          (curr) => curr.filter((pkmn) => pkmn.id != pokemon.id) //* pokedexFallback
-                      );
-            })();
+            const pokedexFiltered = await destroyApi(
+                `${import.meta.env.VITE_POKEDEX_URL}/${pokemon.id}`
+            );
+            pokedexFiltered
+                ? setPokedex(pokedexFiltered)
+                : setPokedex(
+                      (curr) => curr.filter((pkmn) => pkmn.id != pokemon.id) //* pokedexFallback
+                  );
         }
     };
 
