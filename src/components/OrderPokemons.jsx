@@ -27,7 +27,7 @@ function OrderPokemons({ setPokedex }) {
         }
     };
     return (
-        <div className="relative text-white bg-blue-600 rounded-md hover:bg-blue-800">
+        <div className="relative bg-blue-600 rounded-md hover:bg-blue-800">
             <div
                 onClick={handleDropDown}
                 className="flex items-center justify-center text-2xl w-[50px] aspect-square font-black cursor-pointer"
@@ -35,7 +35,7 @@ function OrderPokemons({ setPokedex }) {
                 <i className="fa-solid fa-filter"></i>
             </div>
             {isClicked && (
-                <div className="absolute z-20 py-4 pl-4 pr-8 text-white rounded-md -right-4 sm:-left-24 top-14 bg-slate-800">
+                <div className="absolute z-20 py-4 pl-4 pr-8 text-white rounded-md -right-4 sm:-left-24 top-14 bg-slate-950">
                     <span>Order By:</span>
                     <select
                         ref={selectRef}

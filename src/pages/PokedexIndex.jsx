@@ -1,12 +1,35 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PokedexContext } from "./Pokedex";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";
 import OrderPokemons from "../components/OrderPokemons";
+import GenSelector from "../components/GenSelector";
+
+const chooseGenByFirstId = (firstId) => {
+    switch (firstId) {
+        case 1:
+            return 1;
+        case 152:
+            return 2;
+        case 252:
+            return 3;
+        case 387:
+            return 4;
+        case 494:
+            return 5;
+        case 650:
+            return 6;
+        case 722:
+            return 7;
+        default:
+            return 1;
+    }
+};
 
 function PokedexIndex() {
     const { pokedex, setPokedex } = useContext(PokedexContext);
     const [filter, setFilter] = useState("");
+    const genSelected = chooseGenByFirstId(parseInt(pokedex[0].id));
 
     const filteredPokedex = pokedex.filter((pokemon) =>
         pokemon.name.english.toLowerCase().startsWith(filter.toLowerCase())
@@ -19,9 +42,12 @@ function PokedexIndex() {
     return (
         <>
             <h1 className="mt-4 mb-8 text-4xl uppercase">pokedex</h1>
-            <section className="flex items-center justify-center gap-6 sm:justify-start">
-                <SearchBar onChange={handleFilterChange} filter={filter} />
-                <OrderPokemons setPokedex={setPokedex} />
+            <section className="flex flex-wrap items-center justify-center gap-6 sm:justify-start">
+                <GenSelector genSelected={genSelected} />
+                <div className="flex items-center gap-4">
+                    <SearchBar onChange={handleFilterChange} filter={filter} />
+                    <OrderPokemons setPokedex={setPokedex} />
+                </div>
             </section>
             <CardsContainer>
                 {filteredPokedex?.map((pokemon) => (
