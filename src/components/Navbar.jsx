@@ -12,13 +12,21 @@ function Navbar() {
     const [isPokedexOpen, setIsPokedexOpen] = useState(false);
     const navRef = useRef(null);
     const hamRef = useRef(null);
-
+    const href = window.location.href;
     const handleNavUI = (e) => {
-            navRef?.current.classList.toggle("!block");
-            navRef?.current.classList.toggle("!translate-x-0");
-            hamRef?.current.classList.toggle("translate-x-[140px]");
-            hamRef?.current.classList.toggle("fa-xmark");
+        navRef?.current.classList.toggle("!block");
+        navRef?.current.classList.toggle("!translate-x-0");
+        hamRef?.current.classList.toggle("translate-x-[140px]");
+        hamRef?.current.classList.toggle("fa-xmark");
     };
+
+    useEffect(() => {
+        if (href.includes("pokedex")) {
+            setIsPokedexOpen(true);
+        } else {
+            setIsPokedexOpen(false);
+        }
+    }, [href]);
 
     // classes
     const navElClass =
@@ -52,8 +60,12 @@ function Navbar() {
                             </NavLink>
                         ))}
                     <div
-                        onMouseEnter={() => setIsPokedexOpen((curr) => !curr)}
-                        onMouseLeave={() => setIsPokedexOpen((curr) => !curr)}
+                        onMouseEnter={() => setIsPokedexOpen(true)}
+                        onMouseLeave={() => {
+                            if (!href.includes("pokedex")) {
+                                setIsPokedexOpen(false);
+                            }
+                        }}
                     >
                         <div
                             className={`${navElClass} flex items-center justify-between`}

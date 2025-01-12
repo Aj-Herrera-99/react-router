@@ -3,7 +3,7 @@ import axios from "axios";
 export const indexApi = async (apiUrl, config) => {
     try {
         const res = await axios.get(apiUrl, config);
-        console.log(res);
+        console.log(res.data);
         const data = await res.data;
         return data;
     } catch (err) {
