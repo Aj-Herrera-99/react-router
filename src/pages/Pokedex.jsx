@@ -1,10 +1,9 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { indexApi } from "../api/api";
 import Spinner from "../components/Spinner";
 import pokedexFallback from "../data/pokedex.json"; //* solo per fallback
-
-export const PokedexContext = createContext();
+import PokedexContext from "../contexts/PokedexContext";
 
 const START = 0;
 const LIMIT = 30;

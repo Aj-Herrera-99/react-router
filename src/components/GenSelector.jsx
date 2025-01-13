@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { indexApi } from "../api/api";
-import { PokedexContext } from "../pages/Pokedex";
+import PokedexContext from "../contexts/PokedexContext";
 
 const genOption = [1, 2, 3, 4, 5, 6, 7];
 

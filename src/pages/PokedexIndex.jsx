@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { PokedexContext } from "./Pokedex";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";
 import OrderPokemons from "../components/OrderPokemons";
 import GenSelector from "../components/GenSelector";
 import { indexApi } from "../api/api";
+import PokedexContext from "../contexts/PokedexContext";
 
 const chooseGenByFirstId = (firstId) => {
     switch (firstId) {
@@ -81,7 +81,6 @@ function PokedexIndex() {
                 hasMore={hasMore}
                 next={fetchMorePokemon}
                 loader={<p className="w-full">Loading...</p>}
-                endMessage={<p className="w-full grid-">You are all set!</p>}
                 scrollableTarget="parentScrollDiv"
                 className="grid h-full grid-cols-1 gap-10 my-4 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
             >
@@ -94,14 +93,6 @@ function PokedexIndex() {
                 ))}
             </InfiniteScroll>
         </>
-    );
-}
-
-function CardsContainer({ children }) {
-    return (
-        <div className="grid grid-cols-1 gap-10 my-4 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {children}
-        </div>
     );
 }
 
