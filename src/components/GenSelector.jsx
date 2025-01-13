@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { indexApi } from "../api/api";
 import PokedexContext from "../contexts/PokedexContext";
 

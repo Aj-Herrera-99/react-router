@@ -1,5 +1,3 @@
-import React from "react";
-
 function RemoveBtn({ onClick }) {
     return (
         <div

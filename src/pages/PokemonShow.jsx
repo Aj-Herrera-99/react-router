@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../components/Card";
 import { showApi } from "../api/api";
@@ -24,7 +24,7 @@ function PokemonShow() {
                 pkmnFb ? setPokemon(pkmnFb) : navigate("/errors");
             }
         })();
-    }, []);
+    }, [id, navigate, pokedex]);
 
     return (
         <div className="flex flex-col items-center h-full">

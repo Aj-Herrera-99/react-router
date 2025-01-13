@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import RemoveBtn from "./RemoveBtn";
 import Spinner from "./Spinner";
@@ -40,7 +40,7 @@ function Card({ pokemon, setPokedex }) {
             });
     }, []);
 
-    const removeCard = async (e) => {
+    const removeCard = async () => {
         if (setPokedex) {
             const pokedexFiltered = await destroyApi(
                 `${import.meta.env.VITE_POKEDEX_URL}/${pokemon.id}`

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";

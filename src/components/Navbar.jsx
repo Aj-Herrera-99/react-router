@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const appLinks = [
@@ -13,7 +13,7 @@ function Navbar() {
     const navRef = useRef(null);
     const hamRef = useRef(null);
     const href = window.location.href;
-    const handleNavUI = (e) => {
+    const handleNavUI = () => {
         navRef?.current.classList.toggle("!block");
         navRef?.current.classList.toggle("!translate-x-0");
         hamRef?.current.classList.toggle("translate-x-[140px]");

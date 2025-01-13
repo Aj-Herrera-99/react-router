@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { storeApi } from "../api/api";
 import PokedexContext from "../contexts/PokedexContext";
@@ -48,23 +48,26 @@ function PokemonStore() {
         const KEY = name;
         const VAL = value;
         switch (type) {
-            case "text":
+            case "text": {
                 return setNewPokemon({
                     ...newPokemon,
                     [KEY]: VAL,
                 });
-            case "checkbox":
+            }
+            case "checkbox": {
                 const setTypes = new Set([...newPokemon.type]);
                 checked ? setTypes.add(VAL) : setTypes.delete(VAL);
                 return setNewPokemon({
                     ...newPokemon,
                     [KEY]: Array.from(setTypes),
                 });
-            case "number":
+            }
+            case "number": {
                 return setNewPokemon({
                     ...newPokemon,
                     base: { ...newPokemon.base, [KEY]: VAL },
                 });
+            }
         }
     };
 
